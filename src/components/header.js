@@ -1,18 +1,15 @@
 import React from 'react'
-import Layout from './layout'
-import  './scss/header.scss'
+import css from './scss/header.scss'
+
 
 const Header = () => {
   return (
     <>
-      <div className='top_link'>
-        <h2>TOP</h2>
+      <div className={css.nav_bar}>
+        <div className={css.nav_top}>
+          <h1>Top</h1>
+        </div>
       </div>
-      {/* <div className='other_link'>
-        <ul>
-          <li></li>
-        </ul>
-      </div> */}
     </>
   )
 }
