@@ -1,13 +1,14 @@
-// import Head from 'next/head'
-import React from 'react'
 
+import React from 'react'
 import Layout from '../components/layout'
-// import About from '../components/about'
+import Header from '../components/header'
 
 const Index = () => {
   return (
     <Layout>
-     <div>Hello</div>
+     <Header />
+     {/* <About />
+     <Footer /> */}
     </Layout>
   )
 }
