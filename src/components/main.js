@@ -6,16 +6,45 @@ import css from './scss/main.scss'
 
 const Main = () => {
 
-  // 入力結果を受け取る
   const [todo, setTodo] = useState('')
-
+  
   const [incompleteTodo, setIncompleteTodo] = useState(['ううう','eee'])
+  
+  const [completeTodo, setCompleteTodo] = useState(['www'])
 
+
+  
+  // 入力結果を受け取る
   const onChangeAddTodo = (event) => setTodo(event.target.value);
-
+  
   const addTodo = () => {
     const newTodoList = [...incompleteTodo, todo];
     setIncompleteTodo(newTodoList);
+  }
+
+  const deleteTodo = (index) => {
+    const newTodoList = [...incompleteTodo]
+    newTodoList.splice(index,1);
+    setIncompleteTodo(newTodoList);
+  }
+
+  const onClickComplete = (index) => {
+    const newIncompleteTodoList = [...incompleteTodo]
+    newIncompleteTodoList.splice(index,1);
+    setIncompleteTodo(newIncompleteTodoList);
+
+    const newcompleteTodoList = [...completeTodo,incompleteTodo[index]]
+    setCompleteTodo(newcompleteTodoList);
+
+  }
+
+  const onClickBack = (index) => {
+    const newCompleteTodoList = [...completeTodo]
+    newCompleteTodoList.splice(index,1);
+    setCompleteTodo(newCompleteTodoList);
+
+    const newIncompleteTodoList = [...incompleteTodo,completeTodo[index]]
+    setIncompleteTodo(newIncompleteTodoList);
   }
   
   return (
@@ -23,16 +52,18 @@ const Main = () => {
       <div className={css.todo}>
         <div className={css.input_todo}>
           <h3>TODO入力</h3>
-          <input type='text' value={todo} onChange={onChangeAddTodo}></input>
+          <input type='text' value={todo} onChange={onChangeAddTodo} ></input>
           <button onClick={addTodo}>入力</button>
         </div>
         <div className={css.incomplete_todo}>
           <h3>やることリスト</h3>
             <ul>
-             {incompleteTodo.map((todo)=>{
+             {incompleteTodo.map((todo,index)=>{
                return (
                  <div key={todo} className='incomplete_todo_list'>
                    <li>{todo}</li>
+                   <button onClick={()=>onClickComplete(index)}>完了</button>
+                   <button onClick={()=>deleteTodo(index)}>削除</button>
                  </div>
                )
              })}
@@ -40,9 +71,16 @@ const Main = () => {
         </div>
         <div className={css.complete_todo}>
           <h3>完了リスト</h3>
-            <ul>
-              <li>いいい</li>
-            </ul>
+          <ul>
+            {completeTodo.map((todo,index)=>{
+              return (
+              <div key={todo} className='complete_todo_list'>
+              <li>{todo}</li>
+              <button onClick={()=>onClickBack(index)}>戻す</button>
+              </div>
+            )
+            })}
+          </ul>
         </div>
       </div>
     </>
