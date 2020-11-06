@@ -1,5 +1,6 @@
 import React from 'react'
 import css from './scss/header.scss'
+import Link from 'next/link'
 
 
 const Header = () => {
@@ -7,7 +8,14 @@ const Header = () => {
     <>
       <div className={css.nav_bar}>
         <div className={css.nav_top}>
-          <h1>Top</h1>
+          <Link href={'/'}>
+          <a>Top</a>
+          </Link>
+        </div>
+        <div className={css.other_nav_top}>
+          <Link href={'/top'}>
+             <a>リンク</a>
+            </Link>
         </div>
       </div>
     </>

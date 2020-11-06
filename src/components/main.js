@@ -12,20 +12,24 @@ const Main = () => {
   
   const [completeTodo, setCompleteTodo] = useState(['www'])
 
-
-  
-  // 入力結果を受け取る
   const onChangeAddTodo = (event) => setTodo(event.target.value);
+
+  const removeTodoFromIncomplete = (index) => {
+    const newTodoList = [...incompleteTodo]
+    newTodoList.splice(index,1);
+    setIncompleteTodo(newTodoList);
+  }
   
-  const addTodo = () => {
+  const onClickAdd = () => {
     const newTodoList = [...incompleteTodo, todo];
     setIncompleteTodo(newTodoList);
   }
 
-  const deleteTodo = (index) => {
-    const newTodoList = [...incompleteTodo]
-    newTodoList.splice(index,1);
-    setIncompleteTodo(newTodoList);
+  const onClickDelete = (index) => {
+    return removeTodoFromIncomplete(index);
+    // const newTodoList = [...incompleteTodo]
+    // newTodoList.splice(index,1);
+    // setIncompleteTodo(newTodoList);
   }
 
   const onClickComplete = (index) => {
@@ -35,7 +39,6 @@ const Main = () => {
 
     const newcompleteTodoList = [...completeTodo,incompleteTodo[index]]
     setCompleteTodo(newcompleteTodoList);
-
   }
 
   const onClickBack = (index) => {
@@ -53,7 +56,7 @@ const Main = () => {
         <div className={css.input_todo}>
           <h3>TODO入力</h3>
           <input type='text' value={todo} onChange={onChangeAddTodo} ></input>
-          <button onClick={addTodo}>入力</button>
+          <button onClick={onClickAdd}>入力</button>
         </div>
         <div className={css.incomplete_todo}>
           <h3>やることリスト</h3>
@@ -63,7 +66,7 @@ const Main = () => {
                  <div key={todo} className='incomplete_todo_list'>
                    <li>{todo}</li>
                    <button onClick={()=>onClickComplete(index)}>完了</button>
-                   <button onClick={()=>deleteTodo(index)}>削除</button>
+                   <button onClick={()=>onClickDelete(index)}>削除</button>
                  </div>
                )
              })}
