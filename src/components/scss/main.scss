@@ -1,0 +1,24 @@
+.todo{
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+
+  .input_todo {
+    width: 30%;
+    height: auto;
+    background-color: #FFD8CC;
+  }
+  
+  .incomplete_todo {
+    width: 30%;
+    height: auto;
+    background-color: #F2FFCC;
+  }
+  
+  .complete_todo {
+    width: 30%;
+    height: auto;
+    background-color:	#CCFFF2;
+
+  }
+}
