@@ -2,7 +2,7 @@ import React,{useState} from 'react'
 // ここからデータを送信するので、dispatch機能が必要
 import {dispatch} from 'react-redux'
 
-const main = () => {
+const addTodo = () => {
   // 配列準備
   const [text, setText] = useState('')
   // actionを運ぶ機能dispatch
@@ -31,7 +31,7 @@ const main = () => {
   )
 }
 
-export default main
+export default addTodo
 
 
 
