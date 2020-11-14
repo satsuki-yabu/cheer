@@ -1,44 +1,37 @@
-import React,{component, useImperativeHandle} from 'react'
-import {connect} from 'react-redux'
+import React,{useState} from 'react'
+// ここからデータを送信するので、dispatch機能が必要
+import {dispatch} from 'react-redux'
 
-class Counter extends component {
-  style = {
-    fontsize: '12px',
-    padding: '5px 15px'
-  }
+const main = () => {
+  // 配列準備
+  const [text, setText] = useState('')
+  // actionを運ぶ機能dispatch
+  const dispatch = useDispatch()
 
-  constructor(props) {
-    super(props)
-    this.doAction = this.doAction.bind(this);
-    this.reset= this.reset.bind(this);
-  }
+  onClickAdd = (event) => setText(event.target.value)
+  
+  // keydownとtrimmedText
+  onClickKeyDown = (event) => {
+    const trimmedText = event.target.value.trim()
 
-  doAction(e) {
-    if (e.shiftKey){
-      return this.props.dispatch({type:'DECREMENT'});
-    } else {
-      return this.props.dispatch({type:'INCREMENT'});
+    if(event.which === 13 && trimmedText) {
+      dispatch({type: 'todos/todoAdded', payload: trimmedText })
+      setText('')
     }
-  } 
-
-  reset () {
-    return this.props.dispatch({ type:'RESET'});
   }
-
-  render() {
-    return (
-      <div>
-        <p>{this.props.message}:{this.props.count}</p>
-        <button style={this.style} onClick={this.doAction}>Count</button>
-        <button style={this.style} onClick={this.reset}>Reset</button>
-      </div>
-    )
-  }
+  return (
+    <>
+      <input 
+      type='text'
+      placeholder='Todoを入力してください'
+      onChange={onClickAdd}
+      onKeyDown={onClickKeyDown}
+      />
+    </>
+  )
 }
 
-Counte = connect ((state) => state)(Counter);
-export default Counter;
-
+export default main
 
 
 
