@@ -1,18 +1,16 @@
 import React from 'react'
 import {useSelector} from 'react-redux'
+import todos from '../stores/todosSlice'
 
 const uncompleteTodos = () => {state.todos.filter(todo => !todo.completed)}
 
 const TodoList = () => {
 
-  // useSelectorを使用。引数selectTodosで新しく作瀬されたtodoリストを、todosに代入する。
-  const todos = useSelector(selectTodos)
-  // map関数
-  const renderdListItems = todos.map(todo => todo.id)
+  const todos = useSelector(state => state.todos)
 
   return (
     <>
-      <ul>{renderdListItems}</ul>
+      <ul>aaa</ul>
       <div>
         <ul>
           <li>{uncompleteTodos}</li>

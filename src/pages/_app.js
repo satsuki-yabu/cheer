@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-// import App,{ Container } from 'next/app';
 import { Provider } from 'react-redux';
-import store from '../store';
+import store from '../stores/index.js';
+
 
 const myApp = ({Component, pageProps }) => {
     return (
