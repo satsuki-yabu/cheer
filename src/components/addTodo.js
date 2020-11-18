@@ -1,37 +1,29 @@
-import React,{useSelector, useDispatch} from 'react-redux'
-import {useState} from 'react'
+import {useDispatch} from 'react-redux'
+import React,{useState} from 'react'
+import { connect } from 'react-redux'
+import {addTodo} from '../stores/todosSlice'
 
-// import { useDispatch } from "@reduxjs/toolkit";
+const mapDispatch = {addTodo}
 
+const AddTodo = ({addTodo}) => {
 
-
-
-const addTodo = () => {
   const [text, setText] = useState('')
+
   const dispatch = useDispatch()
 
-  onClickAdd = (event) => setText(event.target.value)
-  onClickKeyDown = (event) => {
-    const trimmedText = event.target.value.trim()
-
-    if(event.which === 13 && trimmedText) {
-      dispatch({type: 'todos/todoAdded', payload: trimmedText })
-      setText('')
+  const handleInputChange = (e) => {
+    setText(e.target.value)
     }
-  }
+
   return (
     <>
-      <input 
-      type='text'
-      placeholder='Todoを入力してください'
-      onChange={onClickAdd}
-      onKeyDown={onClickKeyDown}
-      />
+        <input type='text' value={text} onChange={handleInputChange} placeholder='Todoを入力してください'/>
+        <button type='submit'>入力</button>
     </>
   )
 }
 
-export default addTodo
+export default connect(null, mapDispatch)(AddTodo)
 
 
 

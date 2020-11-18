@@ -1,36 +1,32 @@
-import React from 'react'
 import {createSlice} from '@reduxjs/toolkit';
 
-const initialState =  {
-  name: '',
-  todos: []
-}
+let nextTodoId = 0
 
-const nextTodoId = (todos) => {
-  const maxId = todos.reduce((maxId,todo)=>Math.max(todo.id,maxId),-1)
-  return maxId + 1
-} 
-
-const todos = createSlice({
+const todosSlice = createSlice({
   name: 'todos',
-  initialState,
-
+  initialState: [],
   reducers: {
-    setTodoAdd: (state, action) => {
-      return {
-        ...state,
-        todos: [
-          ...state.todos,
-          {
-            id: nextTodoId(state.todos),
-            text: action.payload
-          }
-        ]
+    addTodo: (state, action)=>{
+      const {id,text} = action.payload
+      state.push({id,text,completed:false})
+    },
+    prepare(text) {
+      return{ payload: {text, id: nextTodoId++ }}
+    },
+
+    toggleTodo: (state, action)=>{
+      const todo = state.find(todo=>todo.id === action.payload)
+      if (todo){
+        todo.completed = !todo.completed
       }
     }
   }
 })
 
-export default todos
+export const {
+  addTodo,toggleTodo
+} = todosSlice.actions
+
+export default todosSlice.reducer
 
 
