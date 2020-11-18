@@ -1,26 +1,16 @@
 import React from 'react'
-import {useSelector} from 'react-redux'
-import todos from '../stores/todosSlice'
+import {Todo} from './Todo'
 
-const uncompleteTodos = () => {state.todos.filter(todo => !todo.completed)}
-
-const TodoList = () => {
-
-  const todos = useSelector(state => state.todos)
-
+const TodoList = ({ todos, toggleTodo }) => {
   return (
     <>
-      <ul>aaa</ul>
-      <div>
-        <ul>
-          <li>{uncompleteTodos}</li>
-          <button className='button'>完了</button>
-          <button className='button'>削除</button>
-        </ul>
-      </div>
+      <ul>
+        {todos.map(todo => (
+          <Todo key={todo.id} {...todo} onClick={() => toggleTodo(todo.id)} />
+        ))}
+      </ul>
     </>
   )
 }
 
 export default TodoList
-

@@ -1,12 +1,10 @@
-import { combineReducers } from "redux";
-import { configureStore } from "@reduxjs/toolkit";
+import React from 'react'
+import { render } from 'react-dom'
+import { configureStore } from '@reduxjs/toolkit'
+import rootReducer from '../reducers/index'
 
-import todosReducer from './todosSlice'
-
-const reducer= combineReducers({
-  todos: todosReducer
-});
-
-const store = configureStore({ reducer });
+const store = configureStore({
+  reducer: rootReducer
+})
 
 export default store
