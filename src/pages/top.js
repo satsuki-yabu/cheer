@@ -7,12 +7,11 @@ import css from '../components/scss/top.scss';
 const Top = () => {
 	return (
 		<>
-			<Header />
 			<div className={css.goTodo}>
-				<h1>テストします</h1>
+				<h1>テストします2</h1>
 			</div>
 			<div className={css.goCheer}>
-				<h1>テストします</h1>
+				<h1>テストします2</h1>
 			</div>
 		</>
 	);
