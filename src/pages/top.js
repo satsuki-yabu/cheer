@@ -8,10 +8,10 @@ const Top = () => {
 	return (
 		<>
 			<div className={css.goTodo}>
-				<h1>テストします2</h1>
+				<h1>マージします</h1>
 			</div>
 			<div className={css.goCheer}>
-				<h1>テストします2</h1>
+				<h1>マージします</h1>
 			</div>
 		</>
 	);
