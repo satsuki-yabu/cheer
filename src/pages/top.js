@@ -8,10 +8,7 @@ const Top = () => {
 	return (
 		<>
 			<div className={css.goTodo}>
-				<h1>test1です</h1>
-			</div>
-			<div className={css.goCheer}>
-				<h1>test1です</h1>
+				<h1>sampleブランチで変更してみます</h1>
 			</div>
 		</>
 	);
